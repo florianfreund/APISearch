@@ -398,11 +398,13 @@ def run_main_logic():
             formatted_params = "\n".join(
                 f"{param_labels[k]}: {v}" for k, v in params.items()
             )
-            root.after(20, add_progress, "===========================")
-            root.after(20, add_progress, "Suchparameter:")
-            root.after(20, add_progress, "")
+            root.after(0, add_progress, "===========================")
+            time.sleep(0.1)
+            root.after(0, add_progress, "Suchparameter:")
+            time.sleep(0.1)
+            root.after(0, add_progress, "")
             for line in formatted_params.split("\n"):
-                root.after(10, add_progress, line)
+                root.after(0, add_progress, line)
             root.after(0, add_progress, "")
             def show_export_setting():
                 value = export_json_var.get()
@@ -414,11 +416,12 @@ def run_main_logic():
                 time.sleep(0.1)
                 add_progress(f"{directory}")
                 time.sleep(0.1)
-            root.after(10, show_export_setting)
-            root.after(10, add_progress, "===========================")
+            root.after(0, show_export_setting)
+            time.sleep(0.1)
+            root.after(0, add_progress, "===========================")
 
             
-
+            time.sleep(0.1)
             root.after(0, lambda:add_progress("Such - Durchlauf läuft..."))
         
             offers = get_all_offers(
@@ -461,8 +464,8 @@ def run_main_logic():
             deduped_count = len(unique)
             duplicates_removed = initial_count - deduped_count
 
-
-            root.after(20, lambda: add_progress(f"{duplicates_removed} doppelte Angebote entfernt"))
+            time.sleep(0.1)
+            root.after(0, lambda: add_progress(f"{duplicates_removed} doppelte Angebote entfernt"))
             
             # Count stats ONLY for this round's new offers
             if new_unique_offers:
@@ -470,12 +473,12 @@ def run_main_logic():
                 all_stats.append(stats)
         
                 total_in_stats = sum(p["count"] for p in stats.values())
-                root.after(10, lambda: add_progress(f"{total_in_stats} neue Angebote gefunden"))
+                root.after(0, lambda: add_progress(f"{total_in_stats} neue Angebote gefunden"))
         
                 # Warn if any provider exceeds 50 in this run
                 for provider_name, p in stats.items():
                     if p.get("count", 0) > params['radius']:
-                        root.after(10, lambda pn=provider_name, c=p["count"]: 
+                        root.after(0, lambda pn=provider_name, c=p["count"]: 
                             add_progress(f"⚠️Warnung: Anbieter '{pn}' hat {c} Angebote in diesem Lauf, bitte Anzahl überprüfen!"))
         
             else:
@@ -488,18 +491,22 @@ def run_main_logic():
 
                 
             total_offers_final = len(all_offers)
-                
-            root.after(10, lambda: add_progress(f"Insgesamt {total_offers_final} Angebote gefunden."))
             
+            time.sleep(0.1)
+            root.after(0, lambda: add_progress(f"Insgesamt {total_offers_final} Angebote gefunden."))
+            
+            time.sleep(0.1)
             total_removed = total_raw - total_offers_final
-            root.after(10, lambda: add_progress(f"Insgesamt {total_removed} doppelte Angebote entfernt ({total_raw} → {total_offers_final})"))
+            root.after(0, lambda: add_progress(f"Insgesamt {total_removed} doppelte Angebote entfernt ({total_raw} → {total_offers_final})"))
         
             
             unique_offers = safeback(all_offers.values())
-
-            root.after(10, add_progress("Fertig!"))
+            
+            time.sleep(0.1)
+            root.after(0, add_progress("Fertig!"))
             merged_stats = count_offers_by_provider(unique_offers.values())
-            root.after(10, lambda: add_progress(f"{len(unique_offers)} Angebote von {len(merged_stats)} Anbietern können exportiert werden."))
+            time.sleep(0.1)
+            root.after(0, lambda: add_progress(f"{len(unique_offers)} Angebote von {len(merged_stats)} Anbietern können exportiert werden."))
 
             now = datetime.now()
             date_str = now.strftime("%Y-%m-%d")
