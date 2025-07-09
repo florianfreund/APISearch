@@ -42,6 +42,12 @@ Es eignet sich ideal zur Analyse von Anbietern, Kursen und Standorten bei Umschu
 • https://github.com/AndreasFischer1985/ausbildungssuche-api 
 
 
+Mit Python 3.11.7 als exe mittels:
+
+pyinstaller --onefile --noconsole --icon=icon.ico APISearch.py
+
+
+
 
 Bildungsarten: 
 100=Allgemeinbildung, 101=Teilqualifizierung, 102=Berufsausbildung, 
