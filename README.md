@@ -42,10 +42,24 @@ Es eignet sich ideal zur Analyse von Anbietern, Kursen und Standorten bei Umschu
 • https://github.com/AndreasFischer1985/ausbildungssuche-api 
 
 
-Mit Python 3.11.7 als exe mittels:
+# Python Skript als .exe installieren:
 
+Dafür müssen alle Python Dependencies bereits in der selben Python Version heruntergeladen sein:
+
+| Modul         | Installationspaket        | Zweck                                   |
+| ------------- | ------------------------- | --------------------------------------- |
+| `requests`    | `pip install requests`    | HTTP-Requests an die Arbeitsagentur-API |
+| `pandas`      | `pip install pandas`      | Datenanalyse, Export in Excel           |
+| `openpyxl`    | `pip install openpyxl`    | Excel-Schreibunterstützung für pandas   |
+| `pyinstaller` | `pip install pyinstaller` | Zum Erstellen der `.exe`                |
+
+
+Dann im Python Ordner der richtigen Version den Befehl ausführen:
+(Ich habe Python 3.11.7 verwendet)
+
+```python
 pyinstaller --onefile --noconsole --icon=icon.ico APISearch.py
-
+```
 
 
 
