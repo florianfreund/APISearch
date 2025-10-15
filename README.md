@@ -56,7 +56,7 @@ Dafür müssen alle Python Dependencies bereits in der selben Python Version her
 <br>
 Dann im Python Ordner der richtigen Version den Befehl ausführen:<br>
 (Ich habe Python 3.11.7 verwendet)<br>
-<br>
+
 ```python
 pyinstaller --onefile --noconsole --icon=icon.ico APISearch.py
 ```
